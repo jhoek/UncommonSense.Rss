@@ -1,16 +1,31 @@
+# Consider adding these item-level elements later:
+# - author
+# - category
+# - comments
+# - enclosure
+# - source
+
 function New-RssFeedItem
 {
-    [CmdletBinding(DefaultParameterSetName = 'Title')]
     param
     (
-        [Parameter(Mandatory, ParameterSetName = 'Title')]
-        [Parameter(ParameterSetName = 'Description')]
+        [Parameter(Mandatory)]
         [string]$Title,
 
-        [Parameter(Mandatory, ParameterSetName = 'Description')]
-        [Parameter(ParameterSetName = 'Title')]
-        [string]$Description
+        [string]$Description,
+
+        [string]$ID,
+
+        [string]$Link,
+
+        [Nullable[DateTime]]$PubDate
     )
 
-    [RssItem]::new($Title, $Description)
+    $Item = [RssItem]::new($Title)
+    $Item.Description = $Description
+    $Item.ID = $ID
+    $Item.Link = $Link
+    $Item.PubDate = $PubDate
+
+    $Item
 }
