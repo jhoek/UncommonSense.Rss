@@ -26,7 +26,9 @@ function New-RssFeed
 
         [Nullable[DateTime]]$PubDate,
 
-        [Nullable[DateTime]]$LastBuildDate
+        [Nullable[DateTime]]$LastBuildDate,
+
+        [RssItem[]]$Items
     )
 
     $StringWriter = New-Object -TypeName System.IO.StringWriter
@@ -43,6 +45,7 @@ function New-RssFeed
     $XmlWriter.WriteElementString('description', $Description)
     if ($PubDate) { $XmlWriter.WriteElementString('pubDate', $PubDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
     if ($LastBuildDate) { $XmlWriter.WriteElementString('lastBuildDate', $LastBuildDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
+    $Items.ForEach{ $_.Write($XmlWriter) }
     $XmlWriter.WriteEndElement() # channel
     $XmlWriter.WriteEndElement() # rss
     $XmlWriter.WriteEndDocument()
