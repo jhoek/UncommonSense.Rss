@@ -30,7 +30,7 @@
     Copyright         = 'Copyright (c) 2019 Jan Hoek'
 
     # Description of the functionality provided by this module
-    # Description = ''
+    Description       = 'PowerShell Module for creating RSS feeds'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
@@ -95,13 +95,13 @@
         PSData = @{
 
             # Tags applied to this module. These help with module discovery in online galleries.
-            # Tags = @()
+            Tags       = @('rss', 'feed', 'syndication')
 
             # A URL to the license for this module.
-            # LicenseUri = ''
+            LicenseUri = 'https://github.com/jhoek/UncommonSense.Rss/blob/master/LICENSE'
 
             # A URL to the main website for this project.
-            # ProjectUri = ''
+            ProjectUri = 'https://github.com/jhoek/UncommonSense.Rss'
 
             # A URL to an icon representing this module.
             # IconUri = ''
