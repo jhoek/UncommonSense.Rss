@@ -15,7 +15,12 @@ class RssItem
     {
         $Writer.WriteStartElement('item');
         $Writer.WriteElementString('title', $this.Title)
-        if ($this.Description) { $Writer.WriteElementString('description', $this.Description) }
+        if ($this.Description)
+        {
+            $Writer.WriteStartElement('description')
+            $Writer.WriteCData($this.Description)
+            $Writer.WriteEndElement()
+        }
         if ($this.ID) { $Writer.WriteElementString('guid', $this.ID) }
         if ($this.Link) { $Writer.WriteElementString('link', $this.Link) }
         if ($this.PubDate) { $Writer.WriteElementString('pubDate', $this.PubDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
