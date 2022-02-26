@@ -53,9 +53,17 @@ function New-RssFeed
         $XmlWriter.WriteStartElement('rss')
         $XmlWriter.WriteAttributeString('version', '2.0')
         $XmlWriter.WriteStartElement('channel')
-        $XmlWriter.WriteElementString('title', $Title)
+
+        $XmlWriter.WriteStartElement('title')
+        $XmlWriter.WriteCData($Title)
+        $XmlWriter.WriteEndElement()
+
         $XmlWriter.WriteElementString('link', $Link)
-        $XmlWriter.WriteElementString('description', $Description)
+
+        $XmlWriter.WriteStartElement('description')
+        $XmlWriter.WriteCData($Description)
+        $XmlWriter.WriteEndElement()
+
         if ($PubDate) { $XmlWriter.WriteElementString('pubDate', $PubDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
         if ($LastBuildDate) { $XmlWriter.WriteElementString('lastBuildDate', $LastBuildDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
         $CachedItems | ForEach-Object { $_.Write($XmlWriter) }
