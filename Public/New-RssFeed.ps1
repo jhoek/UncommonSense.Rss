@@ -64,8 +64,8 @@ function New-RssFeed
         $XmlWriter.WriteCData($Description)
         $XmlWriter.WriteEndElement()
 
-        if ($PubDate) { $XmlWriter.WriteElementString('pubDate', $PubDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
-        if ($LastBuildDate) { $XmlWriter.WriteElementString('lastBuildDate', $LastBuildDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
+        if ($PubDate) { $XmlWriter.WriteElementString('pubDate', (ConvertTo-Rfc822DateTime -DateTime $Pubdate)) }
+        if ($LastBuildDate) { $XmlWriter.WriteElementString('lastBuildDate', (ConvertTo-Rfc822DateTime -DateTime $LastBuildDate)) }
         $CachedItems | ForEach-Object { $_.Write($XmlWriter) }
         $XmlWriter.WriteEndElement() # channel
         $XmlWriter.WriteEndElement() # rss

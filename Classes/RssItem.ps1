@@ -27,7 +27,7 @@ class RssItem
         }
         if ($this.ID) { $Writer.WriteElementString('guid', $this.ID) }
         if ($this.Link) { $Writer.WriteElementString('link', $this.Link) }
-        if ($this.PubDate) { $Writer.WriteElementString('pubDate', $this.PubDate.ToString('ddd, d MMM yyyy HH:mm:ss zzz')) }
+        if ($this.PubDate) { $Writer.WriteElementString('pubDate', (ConvertTo-Rfc822DateTime -DateTime $this.PubDate)) }
         $Writer.WriteEndElement() #item
     }
 }
