@@ -7,7 +7,7 @@ function ConvertTo-Rfc822DateTime
     )
 
     @(
-        $DateTime.ToString('ddd, d MMM yyyy HH:mm:ss')
-        ($DateTime.ToString('zzz') -replace ':', '')
+        $DateTime.ToString('ddd, d MMM yyyy HH:mm:ss', [cultureinfo]::InvariantCulture)
+        ($DateTime.ToString('zzz', [cultureinfo]::InvariantCulture) -replace ':', '')
     ) -join ' '
 }
