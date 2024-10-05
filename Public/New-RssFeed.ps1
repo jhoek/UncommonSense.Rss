@@ -39,15 +39,18 @@ function New-RssFeed
 
     process
     {
-        $CachedItems.AddRange($Items)
+        if ($Items) { $CachedItems.AddRange($Items) }
     }
 
     end
     {
-        $StringWriter = New-Object -TypeName System.IO.StringWriter
+        $MemoryStream = New-Object -TypeName System.IO.MemoryStream
+
         $XmlWriterSettings = New-Object -TypeName System.Xml.XmlWriterSettings
         $XmlWriterSettings.Indent = $true
-        $XmlWriter = [System.Xml.XmlWriter]::Create($StringWriter, $XmlWriterSettings)
+        $XmlWriterSettings.Encoding = [System.Text.Encoding]::Utf8
+
+        $XmlWriter = [System.Xml.XmlWriter]::Create($MemoryStream, $XmlWriterSettings)
 
         $XmlWriter.WriteStartDocument()
         $XmlWriter.WriteStartElement('rss')
@@ -72,6 +75,6 @@ function New-RssFeed
         $XmlWriter.WriteEndDocument()
         $XmlWriter.Flush()
 
-        $StringWriter.ToString()
+        [System.Text.Encoding]::Utf8.GetString($MemoryStream.ToArray())
     }
 }
