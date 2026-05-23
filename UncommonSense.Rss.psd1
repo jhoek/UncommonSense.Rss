@@ -30,7 +30,7 @@
     Copyright         = 'Copyright (c) 2019 Jan Hoek'
 
     # Description of the functionality provided by this module
-    Description       = 'PowerShell Module for creating RSS feeds'
+    Description       = 'PowerShell module for creating RSS feeds'
 
     # Minimum version of the PowerShell engine required by this module
     # PowerShellVersion = ''
